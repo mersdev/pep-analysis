@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Experience Program Survey Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mercedes-blue': '#667eea',
+                        'mercedes-purple': '#764ba2'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="max-w-7xl mx-auto p-6">
+        <header class="text-center mb-10 p-10 bg-gradient-to-r from-mercedes-blue to-mercedes-purple text-white rounded-2xl shadow-xl">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Product Experience Program Survey Analysis</h1>
+            <p class="text-xl opacity-90 font-light">Mercedes-Benz Digital Key & Electric Vehicle Experience Report</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="bg-white p-8 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <h3 class="text-mercedes-blue mb-4 text-lg font-semibold">Total Candidates</h3>
+                <div class="text-4xl font-bold text-gray-800 mb-2">7</div>
+                <p class="text-gray-600 text-sm">Survey participants</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <h3 class="text-mercedes-blue mb-4 text-lg font-semibold">Total Responses</h3>
+                <div class="text-4xl font-bold text-gray-800 mb-2">14</div>
+                <p class="text-gray-600 text-sm">Digital Key + EV + Comparison</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <h3 class="text-mercedes-blue mb-4 text-lg font-semibold">Digital Key Users</h3>
+                <div class="text-4xl font-bold text-gray-800 mb-2">7</div>
+                <p class="text-gray-600 text-sm">Participants who tested digital key</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <h3 class="text-mercedes-blue mb-4 text-lg font-semibold">EV Experience</h3>
+                <div class="text-4xl font-bold text-gray-800 mb-2">5</div>
+                <p class="text-gray-600 text-sm">Participants with EV testing data</p>
+            </div>
+        </div>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 border-b-4 border-mercedes-blue pb-3">Digital Key Experience Analysis</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-800">Setup Ease Distribution</h3>
+                    <canvas id="setupEaseChart" class="max-h-80"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-800">Reliability Performance</h3>
+                    <canvas id="reliabilityChart" class="max-h-80"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-800">Convenience vs Physical Key</h3>
+                    <canvas id="convenienceChart" class="max-h-80"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-800">Security Perception</h3>
+                    <canvas id="securityChart" class="max-h-80"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 border-b-4 border-mercedes-blue pb-3">Electric Vehicle Experience Analysis</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-800">Charging Setup Experience</h3>
+                    <canvas id="chargingSetupChart" class="max-h-80"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-800">Driving Comfort Levels</h3>
+                    <canvas id="drivingComfortChart" class="max-h-80"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-800">Range Anxiety Assessment</h3>
+                    <canvas id="rangeAnxietyChart" class="max-h-80"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-800">Overall EV Convenience</h3>
+                    <canvas id="evConvenienceChart" class="max-h-80"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 border-b-4 border-mercedes-blue pb-3">Vehicle Comparison Insights</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-mercedes-blue hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-mercedes-blue mb-4 text-xl font-semibold">Design Preference</h3>
+                    <p class="mb-3"><strong class="text-gray-800">Winner:</strong> Mercedes E350e</p>
+                    <p class="text-gray-600 leading-relaxed">Participants preferred the E350e's elegant white exterior, premium interior materials, and superior visibility compared to EQE/EQS models.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-mercedes-blue hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-mercedes-blue mb-4 text-xl font-semibold">Technology Features</h3>
+                    <p class="mb-3"><strong class="text-gray-800">Standout:</strong> Digital Car Key</p>
+                    <p class="text-gray-600 leading-relaxed">The digital key functionality was highlighted as a superior technology feature, eliminating the need for physical keys.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-mercedes-blue hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-mercedes-blue mb-4 text-xl font-semibold">Audio System</h3>
+                    <p class="mb-3"><strong class="text-gray-800">Highlight:</strong> Burmester 4D Sound</p>
+                    <p class="text-gray-600 leading-relaxed">The 4D sound feature with vibration and surround sound was consistently praised for its exceptional audio experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 border-b-4 border-mercedes-blue pb-3">Key Feedback & Improvement Areas</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-mercedes-blue mb-6 text-xl font-semibold border-b-2 border-gray-100 pb-3">Digital Key Improvements</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Add facial recognition or fingerprint sensor backup</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Improve Android compatibility</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Faster unlock response time</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Better sharing functionality with name visibility</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Backup options for dead phone battery scenarios</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-mercedes-blue mb-6 text-xl font-semibold border-b-2 border-gray-100 pb-3">EV Experience Improvements</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Expand charging station network availability</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Improve Mercedes navigation system reliability</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Better battery optimization for hybrid mode</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">More competitive charging costs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Enhanced battery hold functionality</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-mercedes-blue mb-6 text-xl font-semibold border-b-2 border-gray-100 pb-3">Safety & Assistance Features</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Adjust parking assistance speed consistency</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Reduce aggressive close-range braking sensitivity</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Improve Hey Mercedes voice activation sensitivity</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-mercedes-blue mr-3 font-bold">→</span>
+                            <span class="text-gray-700">Better lane-keeping assist calibration</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 p-8 bg-gray-800 text-white rounded-2xl">
+            <p class="mb-2 opacity-80">Report generated from Product Experience Program Survey data</p>
+            <p class="opacity-80">Analysis includes responses from <strong>7 candidates</strong> with <strong>14 total responses</strong> across digital key and EV testing experiences</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
